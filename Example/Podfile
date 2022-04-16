@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'MLReleaseDetector_Example' do
+  pod 'MLReleaseDetector', :path => '../'
+
+  target 'MLReleaseDetector_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
