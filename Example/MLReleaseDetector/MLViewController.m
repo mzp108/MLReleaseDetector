@@ -7,6 +7,11 @@
 //
 
 #import "MLViewController.h"
+#import "MLVCLeakViewController.h"
+#import "MLViewLeakViewController.h"
+#import "MLObjectLeakViewController.h"
+#import "MLDelayReleaseViewController.h"
+#import "MLReleaseDetector_Example-Swift.h"
 
 @interface MLViewController ()
 
@@ -24,6 +29,26 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)btnOneClick {
+    [self.navigationController pushViewController:[[MLVCLeakViewController alloc] init] animated:YES];
+}
+
+- (IBAction)btnTwoClick {
+    [self.navigationController pushViewController:[[MLViewLeakViewController alloc] init] animated:YES];
+}
+
+- (IBAction)btnThreeClick {
+    [self.navigationController pushViewController:[[MLObjectLeakViewController alloc] init] animated:YES];
+}
+
+- (IBAction)btnFourClick {
+    [self.navigationController pushViewController:[[MLDelayReleaseViewController alloc] init] animated:YES];
+}
+
+- (IBAction)btnFiveClick {
+    [self.navigationController pushViewController:[[MLSwiftLeakViewController alloc] init] animated:YES];
 }
 
 @end

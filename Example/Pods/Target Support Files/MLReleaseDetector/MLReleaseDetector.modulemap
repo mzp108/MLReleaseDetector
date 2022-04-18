@@ -1,0 +1,6 @@
+framework module MLReleaseDetector {
+  umbrella header "MLReleaseDetector-umbrella.h"
+
+  export *
+  module * { export * }
+}

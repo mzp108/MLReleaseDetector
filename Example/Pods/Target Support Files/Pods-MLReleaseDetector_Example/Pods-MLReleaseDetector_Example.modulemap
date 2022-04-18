@@ -1,0 +1,6 @@
+framework module Pods_MLReleaseDetector_Example {
+  umbrella header "Pods-MLReleaseDetector_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,12 +7,18 @@
 //
 
 #import "MLAppDelegate.h"
+#import <MLReleaseDetector/MLReleaseDetector.h>
 
 @implementation MLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [MLReleaseDetector startupWithWhiteList:@[] leakCallback:^(NSString *leakMsg, NSString *pageName, VSLeakType leakType) {
+        NSLog(@"%@", leakMsg);
+    }];
+    
     return YES;
 }
 

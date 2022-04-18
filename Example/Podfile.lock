@@ -1,0 +1,16 @@
+PODS:
+  - MLReleaseDetector (0.1.0)
+
+DEPENDENCIES:
+  - MLReleaseDetector (from `../`)
+
+EXTERNAL SOURCES:
+  MLReleaseDetector:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MLReleaseDetector: 7ddc5373c8eb2e845d7f4cf627d8c894da854b45
+
+PODFILE CHECKSUM: 061ab5d8bf8af0e903cc47f357ad04b79236d254
+
+COCOAPODS: 1.11.3
