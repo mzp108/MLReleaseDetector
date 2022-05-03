@@ -20,7 +20,7 @@ NSString * const kWeakObjectKey = @"kWeakObjectKey";
 
 // detect object
 - (void)expectReleaseAllObjectsAfterTime:(NSTimeInterval)timeInterval {
-    if ([[MLReleaseDetectHelper getWhiteListSet] containsObject:NSStringFromClass([self class])] || UIAccessibilityIsVoiceOverRunning()) {
+    if ([[MLReleaseDetectHelper getWhiteListSet] containsObject:NSStringFromClass([self class])]) {
         return;
     }
     

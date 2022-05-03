@@ -101,7 +101,7 @@ static inline NSArray<NSString *> *VSReleaseDetectWhiteListArray(void) {
 }
 
 + (void)showAlert:(NSString *)msg pageName:(NSString *)pageName leakType:(VSLeakType)leakType {
-    if (!msg.length) {
+    if (!msg.length || UIAccessibilityIsVoiceOverRunning()) {
         return;
     }
     
