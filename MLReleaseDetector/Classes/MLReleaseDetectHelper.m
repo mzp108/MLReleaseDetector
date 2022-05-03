@@ -117,12 +117,25 @@ static inline NSArray<NSString *> *VSReleaseDetectWhiteListArray(void) {
     [alertController addAction:action];
     alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     if (@available(iOS 13.0, *)) {
-        alertWindow.overrideUserInterfaceStyle = [UIApplication sharedApplication].delegate.window.traitCollection.userInterfaceStyle;
+        UIWindow * keyWindow = nil;
+        for (UIWindowScene * windowScene in [UIApplication sharedApplication].connectedScenes) {
+            if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                for (UIWindow * window in windowScene.windows) {
+                    if (window.isKeyWindow) {
+                        keyWindow = window;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        alertWindow.windowScene = keyWindow.windowScene;
+        alertWindow.overrideUserInterfaceStyle = keyWindow.traitCollection.userInterfaceStyle;
     }
     alertWindow.backgroundColor = [UIColor clearColor];
-    alertWindow.windowLevel = UIWindowLevelNormal + 1;
+    alertWindow.windowLevel = UIWindowLevelAlert + 1;
     alertWindow.rootViewController = [UIViewController new];
-    [alertWindow makeKeyAndVisible];
+    alertWindow.hidden = NO;
     [alertWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
 #endif
 }
