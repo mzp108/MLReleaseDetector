@@ -1,6 +1,6 @@
 # MLReleaseDetector
 
-MLReleaseDetector is a page-based automatic memory leak detection tool on the iOS platform. It can automatically detect memory leaks during development, debugging, and testing, and give location hints for leaks, developers don’t need to spend extra time for this.
+MLReleaseDetector is a page-based automatic memory leak detection tool on the iOS platform. It can automatically detect memory leaks during development, debugging, testing, or online, and give location hints for leaks in DEBUG mode, developers don’t need to spend extra time for this.
 
 # Capability
 
@@ -32,7 +32,7 @@ The last element in the alert is the unreleased Object.
 1. Call the following method to enable memory leak detection before the rootViewController is initialized.
 
 ```objc
-[MLReleaseDetector startupWithWhiteList:@[@"ClassA",@"ClassB"] leakCallback:^(NSString *leakMsg, NSString *pageName, VSLeakType leakType) {
+[MLReleaseDetector startupWithWhiteList:@[@"ClassAString",@"ClassBString"] leakCallback:^(NSString *leakMsg, NSString *pageName, VSLeakType leakType) {
     
 }];
 ```
@@ -40,12 +40,14 @@ The last element in the alert is the unreleased Object.
 - Add the class name of the singleton to the whitelist, the whitelisted class will not be detected.
 - When a leak is detected, an alert will be displayed (only in DEBUG mode) and the leakCallback will be called (both in DEBUG mode and Release mode).
 - You can report leakMsg in leakCallback to the backend for leak statistics.
+- If you only need to detect leaks in DEBUG mode, embed the code above in the DEBUG macro.
 
 2. If the ViewController is cached by another ViewController and you have not called the UIViewController's addChildViewController method, please call the following method to change the detection timing of the subViewController.
 
 ```objc
 [MLReleaseDetector addSubViewController:subViewController forMainViewController:mainViewController];
 ```
+- If the above method is called before memory leak detection is enabled, it will do nothing.
 
 # Delayed release
 
@@ -74,7 +76,7 @@ Clone the repository and run the Demo project in the Example folder to see the e
 
 This library requires `iOS 9.0+`.
 
-# Communication
+# Author
 
 mazhipeng108@gmail.com
 
@@ -87,7 +89,7 @@ MLReleaseDetector is available under the MIT license. See the LICENSE file for m
 <br/><br/>
 # 中文介绍
 
-MLReleaseDetector是iOS平台下基于页面的自动内存泄漏检测工具。 它可以在开发、调试和测试过程中自动检测内存泄漏，并给出泄漏点的定位提示，不需要占用开发人员额外的时间。
+MLReleaseDetector是iOS平台下基于页面的自动内存泄漏检测工具。 它可以在开发、调试、测试过程中或者线上自动检测内存泄漏，并且在DEBUG模式下给出泄漏点的定位提示，不需要占用开发人员额外的时间。
 
 # 能力
 
@@ -116,7 +118,7 @@ MLReleaseDetector可以自动检测内存泄漏，包括UIViewController，UIVie
 
 1. 在根视图控制器初始化之前调用如下方法开启内存泄漏检测。
 ```objc
-[MLReleaseDetector startupWithWhiteList:@[@"ClassA",@"ClassB"] leakCallback:^(NSString *leakMsg, NSString *pageName, VSLeakType leakType) {
+[MLReleaseDetector startupWithWhiteList:@[@"ClassAString",@"ClassBString"] leakCallback:^(NSString *leakMsg, NSString *pageName, VSLeakType leakType) {
     
 }];
 ```
@@ -124,11 +126,14 @@ MLReleaseDetector可以自动检测内存泄漏，包括UIViewController，UIVie
 - 将单例添加到白名单，添加到白名单的类将不会进行检测。
 - 当检测到泄漏之后会弹窗提示（只会在DEBUG模式下弹窗）并回调leakCallback（DEBUG和Release模式下都会回调）。
 - 可以在leakCallback中上报leakMsg给后台做泄漏统计。
+- 如果只需要在DEBUG模式检测泄漏，请将上面的代码嵌入DEBUG宏中。
 
 2. 如果ViewController被其他页面缓存，并且你没有调用UIViewController的addChildViewController方法，请调用如下方法以变更subViewController的检测时机。
 ```objc
 [MLReleaseDetector addSubViewController:subViewController forMainViewController:mainViewController];
 ```
+
+- 如果在开启内存泄漏检测之前调用上述方法，它将不执行任何操作。
 
 # 延迟释放
 
@@ -157,7 +162,7 @@ MLReleaseDetector可以自动检测内存泄漏，包括UIViewController，UIVie
 
 该项目最低支持 `iOS 9.0`。
 
-# 联系
+# 作者
 
 mazhipeng108@gmail.com
 

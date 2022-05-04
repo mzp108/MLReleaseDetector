@@ -5,7 +5,7 @@
 //  Created by mazhipeng on 2022/4/16.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MLTypeDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
